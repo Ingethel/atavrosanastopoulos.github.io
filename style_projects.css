@@ -8,6 +8,10 @@ body {
 	margin: auto;
 }
 
+img {
+	float: left;
+}
+
 .nav{
 	background-color: rgba(0, 0, 0, .125);
 }
@@ -46,6 +50,10 @@ body {
 
 .card-img-top {
 	height: 200px;
+}
+
+.card-img-top-ext {
+	max-width: 400px;
 }
 
 .header {
