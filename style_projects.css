@@ -1,0 +1,68 @@
+html {
+	background-color: rgba(0, 0, 0, .125);
+}
+
+body {
+	background-color: #fff;	
+	max-width: 1500px;
+	margin: auto;
+}
+
+.nav{
+	background-color: rgba(0, 0, 0, .125);
+}
+
+#homeContainer {
+	margin: 0;
+}
+
+.tags {
+	font-size: 0.8rem;
+	color: rgb(100, 100, 100);
+}
+
+.collapse{
+	background-color: rgba(0, 0, 0, .03);
+}
+
+.white-bck{
+	background-color: #fff;
+}
+
+.light-grey-bck{
+	background-color: rgba(0, 0, 0, .03);	
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.project-card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card-img-top {
+	height: 200px;
+}
+
+.header {
+	font-family: 'Bungee Inline';
+	font-size: 2rem;
+	color: #007bff;
+}
+
+.collapse-header {
+	font-family: 'Bungee Inline';
+	font-size: 1.2rem;
+}
+
+.btn {
+	transition: .2s;
+}
+
+.btn:hover {
+	font-weight: bold;
+}
