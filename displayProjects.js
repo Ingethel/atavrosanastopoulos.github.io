@@ -69,7 +69,7 @@ const database = 	[
 		header: "Other",
 		projects: [
 			{
-				image: "images\\Calendar.png",
+				image: "images\\calendar.png",
 				title: "Calendar based Scheduler",
 				summary: "A scheduler created for a museum to hold the guided tours and generate weekly and semester reports.",
 				overview: "",
