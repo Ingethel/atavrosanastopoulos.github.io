@@ -66,8 +66,15 @@ const database = 	[
 		]
 	},
 	{
-		header: "Computer Vision and Graphics",
+		header: "Other",
 		projects: [
+			{
+				image: "images\\Calendar.png",
+				title: "Calendar based Scheduler",
+				summary: "A scheduler created for a museum to hold the guided tours and generate weekly and semester reports.",
+				overview: "",
+				tags: "Unity"	
+			},
 			{
 				image: "images\\robot.png",
 				title: "Automated Resoure Retrieval with Mobile Robots",
@@ -86,7 +93,7 @@ const database = 	[
 	}
 ]
 
-function createProjectCard(project){
+const createProjectCard = (project) => {
 	let card = document.createElement("div");
 	card.className = "card";
 	card.style.width = "18rem";
@@ -101,22 +108,22 @@ function createProjectCard(project){
 
 	let header = document.createElement("h5");
 	header.className = "card-title";
-	header.innerHTML = project.title;
+	header.appendChild(document.createTextNode(project.title));
 
 	let cardText = document.createElement("p");
 	cardText.className = "card-text";
 
 	let summary = document.createElement("p");
-	summary.innerHTML = project.summary;
+	summary.appendChild(document.createTextNode(project.summary));
 
 	let tags = document.createElement("p");
 	tags.className = "tags";
-	tags.innerHTML = "Tags: " + project.tags;
+	tags.appendChild(document.createTextNode(`Tags: ${project.tags}`));
 
 	let button = document.createElement("a");
 	button.href = "";
 	button.className = "btn btn-primary";
-	button.innerHTML = "Learn More";
+	button.appendChild(document.createTextNode("Learn More"));
 
 	cardText.appendChild(summary);
 	cardText.appendChild(tags);
@@ -128,10 +135,10 @@ function createProjectCard(project){
 	return card;
 }
 
-function createProjectClass(o, n = 0, b = false){
+const createProjectClass = (o, n = 0, b = false) => {
 	let card = document.createElement("div");
 	card.className = "card-header";
-	card.id = `heading ${n}`;
+	card.id = `heading${n}`;
 
 	let header = document.createElement("h5");
 	header.className = "mb-0";
@@ -141,18 +148,18 @@ function createProjectClass(o, n = 0, b = false){
 	button.setAttribute("data-toggle", "collapse");
 	button.setAttribute("data-target", "#collapse"+n);
 	button.setAttribute("aria-expanded", b?"true":"fale");
-	button.setAttribute("aria-collapse", `collapse ${n}`);
+	button.setAttribute("aria-collapse", `collapse${n}`);
 
 	let headerText = document.createElement("p");
 	headerText.className = "collapse-header";
-	headerText.innerHTML = o.header;
+	headerText.appendChild(document.createTextNode(o.header));
 
 	button.appendChild(headerText);
 	header.appendChild(button);
 	card.appendChild(header);
 
 	let collapse = document.createElement("div");
-	collapse.id = `collapse ${n}`;
+	collapse.id = `collapse${n}`;
 	collapse.className = b?"collapse show":"collapse";
 	collapse.setAttribute("aria-labelledby", card.id);
 	collapse.setAttribute("data-parent", "#accordionExample");
@@ -168,10 +175,10 @@ function createProjectClass(o, n = 0, b = false){
 	return [card, collapse];
 }
 
-function showProjects(){
-	var element = document.getElementById("projects")
+const showProjects = () =>{
+	let element = document.getElementById("projects")
 	for(p = 0; p < database.length; p++){
-		var r =createProjectClass(database[p], p, p===0);
+		let r =createProjectClass(database[p], p, p===0);
 		element.appendChild(r[0]);
 		element.appendChild(r[1]);
 	}
