@@ -161,99 +161,65 @@ const database = [
 	}
 ]
 
-const replaceCard = (x, y, b) => document.getElementById(`${x}_${y}`).replaceWith(b ? createProjectCardExtended(x, y) : createProjectCard(x, y));
+const replaceCard = (x, y, b) => document.getElementById(`${x}_${y}`).replaceWith(createProjectCard(x, y, !b));
 
-const createProjectCardExtended = (x, y) => {
+const createProjectCard = (x, y, extended) => {
 	let project = database[x].projects[y];
+
 	let card = document.createElement("div");
 	card.setAttribute("id", `${x}_${y}`)
 	card.className = "card";
-	card.style.width = "100%";
+	card.style.width = extended ? "100%" : "18rem";
+
+	let container;
+	if(extended){
+		container = document.createElement("div");
+		container.style = "flex";
+	}
+
+	let img = document.createElement("img");
+	img.className = extended ? "card-img-top-ext" : "card-img-top";
+	let image = extended ? project.image2 : project.image;
+	img.src = image;
+	img.alt = image;
+
+	let cardBody = document.createElement("div");
+	cardBody.className = "card-body project-card-body";
+	if (extended) cardBody.style.minWidth = "55%"
+
+	let header = document.createElement("h5");
+	header.className = "card-title";
+	header.appendChild(document.createTextNode(project.title));
+
+	let cardText = document.createElement("p");
+	cardText.className = "card-text";
+
+	let summary = document.createElement("p");
+	if (extended) summary.innerHTML = project.overview;
+	else summary.appendChild(document.createTextNode(project.summary));
 	
-	let container = document.createElement("div");
-	container.style = "flex";
-
-	let img = document.createElement("img");
-	img.className = "card-img-top-ext";
-	img.src = project.image2;
-	img.alt = project.image2;
-
-	let cardBody = document.createElement("div");
-	cardBody.className = "card-body project-card-body";
-	cardBody.style.minWidth = "55%"
-
-	let header = document.createElement("h5");
-	header.className = "card-title";
-	header.appendChild(document.createTextNode(project.title));
-
-	let cardText = document.createElement("p");
-	cardText.className = "card-text";
-
-	let summary = document.createElement("p");
-	summary.innerHTML = project.overview;
-
 	let tags = document.createElement("p");
 	tags.className = "tags";
 	tags.appendChild(document.createTextNode(`Tags: ${project.tags}`));
 
 	let button = document.createElement("a");
 	button.className = "btn btn-primary";
-	button.addEventListener("click", replaceCard.bind(null, x, y, false));
-	button.appendChild(document.createTextNode("Show Less"));
+	button.addEventListener("click", () => replaceCard(x, y, extended));
+	button.appendChild(document.createTextNode(extended ? "Show Less" : "Show More"));
 
 	cardText.appendChild(summary);
 	cardText.appendChild(tags);
 	cardBody.appendChild(header)
 	cardBody.appendChild(cardText);
 	cardBody.appendChild(button);
-	container.appendChild(img);
-	container.appendChild(cardBody);
-	card.appendChild(container);
-	return card;
-}
-
-const createProjectCard = (x, y) => {
-	let project = database[x].projects[y];
-	let card = document.createElement("div");
-	card.setAttribute("id", `${x}_${y}`)
-	card.className = "card";
-	card.style.width = "18rem";
-	card.style.display = "flex";
-
-	let img = document.createElement("img");
-	img.className = "card-img-top";
-	img.src = project.image;
-	img.alt = project.image;
-
-	let cardBody = document.createElement("div");
-	cardBody.className = "card-body project-card-body";
-
-	let header = document.createElement("h5");
-	header.className = "card-title";
-	header.appendChild(document.createTextNode(project.title));
-
-	let cardText = document.createElement("p");
-	cardText.className = "card-text";
-
-	let summary = document.createElement("p");
-	summary.appendChild(document.createTextNode(project.summary));
-
-	let tags = document.createElement("p");
-	tags.className = "tags";
-	tags.appendChild(document.createTextNode(`Tags: ${project.tags}`));
-
-	let button = document.createElement("a");
-	button.className = "btn btn-primary";
-	button.addEventListener("click", replaceCard.bind(null, x, y, true));
-	button.appendChild(document.createTextNode("Show More"));
-
-	cardText.appendChild(summary);
-	cardText.appendChild(tags);
-	cardBody.appendChild(header)
-	cardBody.appendChild(cardText);
-	cardBody.appendChild(button);
-	card.appendChild(img);
-	card.appendChild(cardBody);
+	if (extended){
+		container.appendChild(img);
+		container.appendChild(cardBody);
+		card.appendChild(container);
+	} else {
+		card.appendChild(img);
+		card.appendChild(cardBody);
+	}
 	return card;
 }
 
@@ -289,9 +255,9 @@ const createProjectClass = (n = 0, b = false) => {
 	let container = document.createElement("div");
 	container.style.display = "flex";
 	container.style.flexWrap = "wrap";
-	for(let i = 0; i < database[n].projects.length; i++){
-		container.appendChild(createProjectCard(n, i));
-	}
+
+	for(let i = 0; i < database[n].projects.length; i++)
+		container.appendChild(createProjectCard(n, i, false));
 	collapse.appendChild(container);
 
 	return [card, collapse];
@@ -300,7 +266,7 @@ const createProjectClass = (n = 0, b = false) => {
 const showProjects = () =>{
 	let element = document.getElementById("projects")
 	for(let i = 0; i < database.length; i++){
-		let r =createProjectClass(i, i===0);
+		let r = createProjectClass(i, i===0);
 		element.appendChild(r[0]);
 		element.appendChild(r[1]);
 	}
