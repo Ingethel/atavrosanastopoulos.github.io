@@ -188,9 +188,10 @@ const createProjectCard = (x, y, extended) => {
 
 	let card = document.createElement("div");
 	card.setAttribute("id", `${x}_${y}`)
-	card.className = "card";
+	card.className = "card box-shadow anim-button";
 	card.style.width = extended ? "100%" : "18rem";
-
+	card.style.margin = "3px";
+	card.addEventListener("click", () => replaceCard(x, y, extended));
 	let container;
 	if(extended){
 		container = document.createElement("div");
@@ -222,16 +223,10 @@ const createProjectCard = (x, y, extended) => {
 	tags.className = "tags";
 	tags.appendChild(document.createTextNode(`Tags: ${project.tags}`));
 
-	let button = document.createElement("a");
-	button.className = "btn btn-primary";
-	button.addEventListener("click", () => replaceCard(x, y, extended));
-	button.appendChild(document.createTextNode(extended ? "Show Less" : "Show More"));
-
 	cardText.appendChild(summary);
 	cardText.appendChild(tags);
 	cardBody.appendChild(header)
 	cardBody.appendChild(cardText);
-	cardBody.appendChild(button);
 	if (extended){
 		container.appendChild(img);
 		container.appendChild(cardBody);
@@ -245,30 +240,26 @@ const createProjectCard = (x, y, extended) => {
 
 const createProjectClass = (n = 0, b = false) => {
 	let card = document.createElement("div");
-	card.className = "card-header";
+	card.className = "card-header box-shadow anim-button";
 	card.id = `heading${n}`;
+	card.setAttribute("data-toggle", "collapse");
+	card.setAttribute("data-target", "#collapse"+n);
+	card.setAttribute("aria-expanded", b?"true":"fale");
+	card.setAttribute("aria-collapse", `collapse${n}`);
 
 	let header = document.createElement("h5");
 	header.className = "mb-0";
-
-	let button = document.createElement("button");
-	button.className = "btn btn-link";
-	button.setAttribute("data-toggle", "collapse");
-	button.setAttribute("data-target", "#collapse"+n);
-	button.setAttribute("aria-expanded", b?"true":"fale");
-	button.setAttribute("aria-collapse", `collapse${n}`);
 
 	let headerText = document.createElement("p");
 	headerText.className = "collapse-header";
 	headerText.appendChild(document.createTextNode(database[n].header));
 
-	button.appendChild(headerText);
-	header.appendChild(button);
+	header.appendChild(headerText);
 	card.appendChild(header);
 
 	let collapse = document.createElement("div");
 	collapse.id = `collapse${n}`;
-	collapse.className = b?"collapse show":"collapse";
+	collapse.className = b?"collapse show box-shadow":"collapse box-shadow";
 	collapse.setAttribute("aria-labelledby", card.id);
 	collapse.setAttribute("data-parent", "#accordionExample");
 
