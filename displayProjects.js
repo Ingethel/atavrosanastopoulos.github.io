@@ -133,8 +133,8 @@ const database = [
 		header: "Other",
 		projects: [
 			{
-				image: "images\\calendar.png",
-				image2: "images\\calendar.png",
+				image: "images\\calendar.PNG",
+				image2: "images\\calendar.PNG",
 				title: "Calendar based Scheduler",
 				summary: "A scheduler created for a museum to hold the guided tours and generate weekly and semester reports.",
 				overview: `<p>This project was created for a naval museum as a scheduler in order to store their guided tours and have a good visualisation of the timetable to increase their productivity. 
