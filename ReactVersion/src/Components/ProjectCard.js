@@ -16,13 +16,22 @@ class Card extends Component {
 		}
 	}
 
-	getCardStyle = () => {
+	getCardStyleCompact = () => {
 		return {
-			width: this.state.extended ? "100%" : "18rem", 
+			width: "18rem", 
 			display: "flex",
-			flexFlow: "row wrap"		
+			float: "left",
+			flexFlow: "row wrap"
 		};
 	}
+
+
+	getCardStyleExtended = () => {
+		return {
+			width: "100%" 
+		};
+	}
+
 
 	getCardTextStyle = () =>{
 		return {
@@ -45,13 +54,13 @@ class Card extends Component {
 			<div
 				id = {`${this.state.indexClass}_${this.state.indexProject}`}
 				className = "box-shadow anim-button"
-				style = {this.getCardStyle()}
+				style = {this.state.extended ? this.getCardStyleExtended() : this.getCardStyleCompact()}
 				onClick = {this.onClick}
 			>
 				<Image 
 					imgURL = {process.env.PUBLIC_URL + (this.state.extended ? this.state.project.image2 : this.state.project.image)}
 					imgWidth = {this.state.extended ? "400px" : "100%"}
-					imgHeight = {this.state.extended ? "" : "200px"}
+					imgHeight = {this.state.extended ? "auto" : "200px"}
 				/>
 				<div 
 				style={this.getCardTextStyle()}

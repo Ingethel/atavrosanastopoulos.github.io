@@ -2,9 +2,10 @@ import React from 'react';
 import Card from './ProjectCard'
 
 const Container = ({projectList, index, flag}) => {
+	
 	let divStyle = {
 		display : "flex",
-		flexWrap : "wrap"
+		flexWrap : "wrap",
 	}
 
 	const projectCards = projectList.map((user, index_p) => {
