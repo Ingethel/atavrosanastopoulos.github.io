@@ -9,7 +9,7 @@ const Nav = () => {
 					<a href="#homeContainer">Home</a>
 				</li>
 				<li>
-					<a href="#accordionExample">Projects</a>
+					<a href="#projectsContainer">Projects</a>
 				</li>
 				<li>
 					<a href="#contactContainer">Contact</a>

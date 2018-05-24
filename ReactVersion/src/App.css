@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 html {
 	height: 100vh;
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, .2) 100%);
+	font-family: 'Anton';
 }
 
 body {

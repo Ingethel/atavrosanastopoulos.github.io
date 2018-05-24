@@ -11,16 +11,14 @@ const ProjectsDiv = () => {
 				key = {i}
 				projectClass = {user}
 				index = {i}
-				flag = {i===0}
+				flag = {true}
 			/>
 			);
 	});
 	
 	return (
-		<div className = "accordion" id = "accordionExample">
-			<div className = "card transparent" id = "projects">
+		<div id = "projectsContainer">
 				{projectsArray}
-			</div>
 		</div>
 	);
 }

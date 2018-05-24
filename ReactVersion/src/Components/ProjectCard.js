@@ -40,7 +40,8 @@ class Card extends Component {
 			display: "flex",
 			flexDirection: "column",
 			justifyContent: "space-between",
-			wordWrap: "break-word"
+			wordWrap: "break-word",
+			fontFamily: "Roboto"
 		};
 	}
 	

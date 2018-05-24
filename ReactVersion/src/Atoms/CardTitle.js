@@ -3,7 +3,7 @@ import React from 'react';
 const Title = ({title}) => {
 	let myStyle = {
 		fontSize: "1.2rem",
-		fontWeight: "bold"
+		fontFamily: "Anton"
 	}
 	return (
 			<p style = {myStyle}>

@@ -4,7 +4,8 @@ const Scroll = (props) => {
 	let style = {
 		 overflowY: 'scroll', 
 		 width: '100%', 
-		 height: '900px'
+		 height: 'auto',
+		 maxHeight: '900px'
 	}
 
   return (

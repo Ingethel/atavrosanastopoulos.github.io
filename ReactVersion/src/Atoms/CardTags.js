@@ -2,7 +2,7 @@ import React from 'react';
 
 const Tags = ({tags}) => {
 	let myStyle = {
-		fontSize: "0.8rem",
+		fontSize: "0.7rem",
 		color: "rgb(100, 100, 100)"
 	}
 	return (
