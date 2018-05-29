@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Image = ({imgURL, imgWidth, imgHeight}) => {
+const Image = ({imgURL, imgWidth = "auto", imgHeight = "auto"}) => {
 	let myStyle = {
 		width: imgWidth,
 		height: imgHeight,
@@ -11,7 +11,7 @@ const Image = ({imgURL, imgWidth, imgHeight}) => {
 	return (
 			<img
 				style = {myStyle}
-				src = {process.env.PUBLIC_URL + imgURL}
+				src = {imgURL}
 				alt = {imgURL}
 			/>
 	);

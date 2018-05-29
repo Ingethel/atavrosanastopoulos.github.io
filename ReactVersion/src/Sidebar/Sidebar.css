@@ -1,0 +1,23 @@
+.contactSidebar{
+	position: absolute;
+  	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: auto;
+	z-index: 500;
+	margin: auto;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+	transition: .2s;
+}
+
+.sidebarimg{
+	margin: 3px;
+}
+
+.sidebarimg:hover{
+	transform: translateX(10%);
+}

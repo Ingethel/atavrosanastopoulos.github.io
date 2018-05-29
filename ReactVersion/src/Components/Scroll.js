@@ -1,19 +1,42 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const Scroll = (props) => {
-	let style = {
-		 overflowY: 'scroll', 
-		 width: '100%', 
-		 height: 'auto',
-		 maxHeight: '900px'
+export default class Scroll extends Component {
+
+	constructor(props){
+		super(props);
+		this.state = {
+			height: this.props.height,
+			update: () => this.updateState()
+		}
 	}
 
-  return (
-    <div style={style}>
-      {props.children}
-    </div>
-  );
-  
-};
+	componentDidMount(){
+		window.addEventListener("resize", this.state.update);
+	}
 
-export default Scroll;
+	componentWillUnmount() {
+    	window.removeEventListener("resize", this.state.update);
+	}
+
+	updateState(){
+		this.setState({height: window.innerHeight});
+	}
+
+	style() {
+		return{
+			overflowY: 'scroll',
+			width: '100%',
+			height: 'auto',
+			maxHeight: this.state.height-10,
+		}
+	}
+
+	render(){
+		return (
+	    	<div style={this.style()}>
+	    		{this.props.children}
+	    	</div>
+	  	);
+	}
+  
+}

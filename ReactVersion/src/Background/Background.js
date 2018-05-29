@@ -25,7 +25,6 @@ export default class Background extends Component {
 		let points = this.state.points;
 		points.push([event.clientX, event.clientY]);
 		this.setState(points);
-		console.log("bck: ", points)
 	}
 
 	render(){

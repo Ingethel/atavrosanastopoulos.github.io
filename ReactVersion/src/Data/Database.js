@@ -1,10 +1,10 @@
-export const database = [
+const database = [
 	{
 		header: "Computer Vision and Graphics",
 		projects: [
 			{
-				image: `images/examplegeometrymap.png`,
-				image2: "images\\examplegeometrymapFull.png",
+				image: `/images/examplegeometrymap.png`,
+				image2: "/images/examplegeometrymapFull.png",
 				title: "Saliency in 3D Environment",
 				summary: "Exploring low-level saliency in virtual environments during a search task.",
 				overview: `<p>Exploring low-level saliency in virtual environments during a search task. 
@@ -19,8 +19,8 @@ export const database = [
 				tags: "Tobii EyeX, Unity, C++, OpenCV, OpenGL"
 			},
 			{
-				image: `images/volumvis.png`,
-				image2: "images\\volumvisFull.png",
+				image: `/images/volumvis.png`,
+				image2: "/images/volumvisFull.png",
 				title: "3D Volume Visualisation using Ray Tracing",
 				summary: "Visualisation of volume data using ray tracing rendering and uniform sampling.",
 				overview: `<p>Visualisation of volume data using the ray tracing rendering technique and uniform sampling.
@@ -35,8 +35,8 @@ export const database = [
 				tags: "C++, Pthreads, OpenGL"
 			},
 			{
-				image: `images/raytracing.png`,
-				image2: "images\\raytracing.png",
+				image: `/images/raytracing.png`,
+				image2: "/images/raytracing.png",
 				title: "Ray Tracing",
 				summary: "Ray Tracer rendering technique. All objects are declared in a mathematical format.",
 				overview: `<p>Ray Tracer example written in C++ using OpenGL for rendering the output, GLM for matrix and vector operations and Pthreads for some speed-up. 
@@ -48,8 +48,8 @@ export const database = [
 				tags: "C++, Pthreads, OpenGL, GLM"
 			},
 			{
-				image: `images/tracking.png`,
-				image2: "images\\trackingFull.png",
+				image: `/images/tracking.png`,
+				image2: "/images/trackingFull.png",
 				title: "Multiple Object Tracking",
 				summary: "Identify and track a set of objects across frames.",
 				overview: `<p>The objective was to identify and track a set of balls across frames, having a total of 10 balls varied across 3 colors. 
@@ -60,8 +60,8 @@ export const database = [
 				tags: "Matlab"
 			},
 			{
-				image: `images/DWA.png`,
-				image2: "images\\DWA.png",
+				image: `/images/DWA.png`,
+				image2: "/images/DWA.png",
 				title: "Image Processing",
 				summary: "Application of some basic filters is explored, as well as a stitching technique for panoramic compostition.",
 				overview: `<p>Python code demonstrating an horizontal panoramic composition technique. 
@@ -77,8 +77,8 @@ export const database = [
 		header: "Computer Games",
 		projects: [
 			{
-				image: `images/boulder.png`,
-				image2: "images\\boulder.png",
+				image: `/images/boulder.png`,
+				image2: "/images/boulder.png",
 				title: "Boulder Bypasser",
 				summary: "Semi 3D flight game. Fly inside a procedurally generated cave. Pass throught waypoints and avoid obstacles.",
 				overview: `<p>Semi-3D Flight game.</p>
@@ -96,8 +96,8 @@ export const database = [
 				tags: "Unity, 3DS Max"
 			},
 			{
-				image: `images/spaceretr.png`,
-				image2: "images\\spaceretrFull.png",
+				image: `/images/spaceretr.png`,
+				image2: "/images/spaceretrFull.png",
 				title: "Space Retributor",
 				summary: "2D arcade space shooter. Fight your way through enemies of increasing difficulty and their end-game boss.",
 				overview: `<p>A 2D arcade, space shooter game.</p>
@@ -114,8 +114,8 @@ export const database = [
 				tags: "Unity"
 			},
 			{
-				image: `images/ballrunner.png`,
-				image2: "images\\ballrunnerFull.png",
+				image: `/images/ballrunner.png`,
+				image2: "/images/ballrunnerFull.png",
 				title: "Ball Runner",
 				summary: "A platform-runner mini game with simplistic graphics and procedurally generated level.",
 				overview: `<p>A platform/runner mini game with simplistic graphics.</p>
@@ -133,8 +133,8 @@ export const database = [
 		header: "Other",
 		projects: [
 			{
-				image: `images/calendar.PNG`,
-				image2: "images\\calendar.PNG",
+				image: `/images/calendar.PNG`,
+				image2: "/images/calendar.PNG",
 				title: "Calendar based Scheduler",
 				summary: "A scheduler created for a museum to hold the guided tours and generate weekly and semester reports.",
 				overview: `<p>This project was created for a naval museum as a scheduler in order to store their guided tours and have a good visualisation of the timetable to increase their productivity. 
@@ -155,8 +155,8 @@ export const database = [
 				tags: "Unity"
 			},
 			{
-				image: `images/robot.png`,
-				image2: "images\\robot.png",
+				image: `/images/robot.png`,
+				image2: "/images/robot.png",
 				title: "Automated Resoure Retrieval with Mobile Robots",
 				summary: "Robotics group project with aim of constructing an autonomous robot for navigating in an arena, searching the specified resources and retrieving them back to the base.",
 				overview: `<p>A robotics project conducted in a team of three. 
@@ -166,8 +166,8 @@ export const database = [
 				tags: "C++, Pthreads, Phidget, Lego"
 			},
 			{
-				image: `images/NN.png`,
-				image2: "images\\NN.png",
+				image: `/images/NN.png`,
+				image2: "/images/NN.png",
 				title: "Neural Network and Genetic Algorithm",
 				summary: "Construction of Neural Network to learn two function outputs with single input and optimisation of hidden layer by a genetic algorithm.",
 				overview: `<p>An example of a Neural Network simulating the result of two functions in C++. 

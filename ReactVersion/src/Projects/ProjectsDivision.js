@@ -17,7 +17,9 @@ const ProjectsDiv = () => {
 	});
 	
 	return (
-		<div id = "projectsContainer">
+		<div 
+		style={{marginTop: "70px"}}
+		id = "projectsContainer">
 				{projectsArray}
 		</div>
 	);
