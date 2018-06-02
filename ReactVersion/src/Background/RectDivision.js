@@ -5,7 +5,7 @@ export default class RectDivision extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			points: this.props.points,
+			points: [],
 			maxX: this.props.width,
 			maxY: this.props.height,
 			update: () => this.updateDims()
@@ -13,7 +13,6 @@ export default class RectDivision extends Component {
 	}
 	
 	updateDims(){
-		console.log("received")
 		this.setState({
 			maxX: this.props.width,
 			maxY: this.props.height
@@ -21,10 +20,13 @@ export default class RectDivision extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-	    if(this.props.width !== nextProps.width)
+	    if((this.props.width !== nextProps.width) || (this.props.height !== nextProps.height))
 	    {
 	        this.state.update();
 	    }
+		if((this.props.clickPoint !== nextProps.clickPoint)){
+			this.newEntry(nextProps.clickPoint);
+		}
 	} 
 
 	componentDidMount(){
@@ -33,6 +35,12 @@ export default class RectDivision extends Component {
 
 	componentDidUpdate(){
 		this.draw(this.state.points);
+	}
+
+	newEntry(point){
+		let points = this.state.points;
+		points.push(point);
+		this.setState(points);
 	}
 
 	createRects = (point0, point1, point2) => {
