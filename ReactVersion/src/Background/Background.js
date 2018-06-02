@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import RectDivision from './RectDivision';
+import PointAssembly from './PointAssembly';
 
 export default class Background extends Component {
 	
@@ -9,8 +10,9 @@ export default class Background extends Component {
 			width: this.props.width,
 			height: this.props.height,
 			makeForeground: this.props.makeForeground,
-			update: () => this.updateDims(),
-			points: []
+			point: [0,0],
+			recordCursor: false,
+			update: () => this.updateDims()
 		}
 	}
 
@@ -44,19 +46,35 @@ export default class Background extends Component {
 	}
 
 	onClick = (event) => {
-		let points = this.state.points;
-		points.push([event.clientX, event.clientY]);
-		this.setState(points);
+		let newPoint = [event.clientX, event.clientY];
+		this.setState({point: newPoint});
+	}
+
+	onMouseDown = (event) => {
+		this.setState({recordCursor: true});
+	}
+	onMouseUp = () => {
+		this.setState({recordCursor: false});
+	}
+
+	onMouseMove = (event) =>{
+		if(this.state.recordCursor){
+			this.onClick(event);
+		}
 	}
 
 	render(){
 		return(
 			<div
 				style = {this.style()} 
+				onMouseDown = {this.onMouseDown}
+				onMouseMove = {this.onMouseMove}
+				onMouseUp = {this.onMouseUp}
 				onClick = {this.onClick}
 			>
-				<RectDivision
-					points = {this.state.points}
+				<PointAssembly
+					clickPoint = {this.state.point}
+					cursorState = {this.state.recordCursor}
 					width = {this.state.width} 
 					height = {this.state.height}
 				/>
