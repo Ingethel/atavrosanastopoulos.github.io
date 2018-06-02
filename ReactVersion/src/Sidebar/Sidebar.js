@@ -1,35 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Image from '../Atoms/CardImage';
 import contactInfo from '../Data/ContactInfo'
 import './Sidebar.css';
 
-export default class Sidebar extends Component {
+const Sidebar = ({render}) => {
 
-	constructor(props){
-		super(props);
-		this.state = {
-			render: this.props.width >= 1600,
-			update: () => this.updateState()
-		}
-	}
-
-	componentDidMount(){
-		window.addEventListener("resize", this.state.update);
-	}
-
-	componentWillUnmount() {
-    	window.removeEventListener("resize", this.state.update);
-	}
-
-	updateState(){
-		this.setState({render: window.innerWidth >= 1600});
-	}
-
-	onClick = (event) => {
-		console.log(event);
-	}
-
-	renderContacts(){
+	const renderContacts = () => {
 		return contactInfo.map((contact, index) => {
 			return(
 				<a 
@@ -45,14 +21,14 @@ export default class Sidebar extends Component {
 		})
 	}
 
-	render(){
-		return (
-			this.state.render ?
-			<div className="contactSidebar">
-				{this.renderContacts()}
-			</div>
-			: <div></div>
-		);	
-	}
+	return (
+		render ?
+		<div className="contactSidebar">
+			{renderContacts()}
+		</div>
+		: <div></div>
+	);	
 	
 }
+
+export default Sidebar;
