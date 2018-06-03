@@ -1,9 +1,10 @@
 {
-  "main.css": "static/css/main.9a7317a8.css",
-  "main.css.map": "static/css/main.9a7317a8.css.map",
-  "main.js": "static/js/main.8010d655.js",
-  "main.js.map": "static/js/main.8010d655.js.map",
+  "main.css": "static/css/main.7bcdfd0a.css",
+  "main.css.map": "static/css/main.7bcdfd0a.css.map",
+  "main.js": "static/js/main.7147b4ea.js",
+  "main.js.map": "static/js/main.7147b4ea.js.map",
   "static\\media\\email.png": "static/media/email.c6bdbb38.png",
   "static\\media\\github.png": "static/media/github.0fbf2cc8.png",
-  "static\\media\\gplay.png": "static/media/gplay.aa246fb5.png"
+  "static\\media\\gplay.png": "static/media/gplay.aa246fb5.png",
+  "static\\media\\linkedin.png": "static/media/linkedin.18db0015.png"
 }
