@@ -54,6 +54,7 @@ li:nth-of-type(3):hover ~ .underbar {
 a{
 	text-decoration: none;
 	color: #007bff;
+	cursor: pointer;
 }
 
 a:hover{

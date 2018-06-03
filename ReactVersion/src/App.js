@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Nav from './NavBar/Nav';
 import Background from './Background/Background';
 import ProjectsDiv from './Projects/ProjectsDivision';
+import HomeDiv from './Home/Home';
+import ContactsDiv from './Contacts/Contacts';
+import ContactsBar from './Contacts/ContactsBar';
 import Scroll from './Components/Scroll';
-import Sidebar from './Sidebar/Sidebar';
 import './App.css';
 
 export default class App extends Component {
@@ -11,6 +13,12 @@ export default class App extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
+			pageContent: 0,
+			pages: [
+				() => <HomeDiv/>, 
+				() => <ProjectsDiv/>, 
+				() => <ContactsDiv/>
+			],
 			renderSidebar: true,
 			contentWidth: 1500,
 			contentHeight: window.innerHeight-10,
@@ -20,19 +28,13 @@ export default class App extends Component {
 		}
 	}
 
-	componentWillMount(){
-		this.state.update();
-	}
+	componentWillMount = () => this.state.update()
 
-	componentDidMount(){
-		window.addEventListener("resize", this.state.update);
-	}
+	componentDidMount = () => window.addEventListener("resize", this.state.update)
 
-	componentWillUnmount() {
-    	window.removeEventListener("resize", this.state.update);
-	}
+	componentWillUnmount = () => window.removeEventListener("resize", this.state.update)
 
-	updateState(){
+	updateState = () => {
 		this.setState({
 			contentHeight: window.innerHeight-10,
 			maxWidth: window.innerWidth,
@@ -59,14 +61,26 @@ export default class App extends Component {
 		}
 	}
 
-	render(){
+	changeContent = (value) => {
+		this.setState({
+			pageContent: value
+		})
+	}
+
+	sidebar = () => {
+		if(this.state.pageContent !== 2){
+			return (<ContactsBar render={this.state.renderSidebar} sidebar={true}/>);
+		}
+	}
+
+	render = () => {
 		return (
 			<div className="container" style={{maxWidth: this.state.contentWidth}}>
-				<Nav/>
-				<Sidebar render={this.state.renderSidebar}/>
-				<Background width={this.state.maxWidth} height={this.state.maxHeight}/>
+				<Nav clickFunc={this.changeContent}/>
+				{this.sidebar()}
+				<Background width={this.state.maxWidth} height={this.state.maxHeight} game={this.state.pageContent === 1 ? 'rects' : 'points'}/>
 				<Scroll height={this.state.contentHeight}>
-					<ProjectsDiv/>
+					{this.state.pages[this.state.pageContent]()}
 				</Scroll>
 			</div>
 		);

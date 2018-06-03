@@ -14,8 +14,20 @@
 	transition: .2s;
 }
 
+.contactBar{
+	display: flex;
+	width: 330px;
+	height: auto;
+	margin-bottom: 10px;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+	transition: .2s;
+}
+
 .sidebarimg{
-	margin: 3px;
+	display: block;
+	margin: auto;
+	margin-left: 3px;
 }
 
 .sidebarimg:hover{

@@ -1,18 +1,18 @@
 import React from 'react';
 import './Nav.css';
 
-const Nav = () => {
+const Nav = ({clickFunc}) => {
 	return (
 		<div className="mynavbar">
 			<ul>
 				<li>
-					<a href="#homeContainer">Home</a>
+					<a onClick = {() => clickFunc(0)}>Home</a>
 				</li>
 				<li>
-					<a href="#projectsContainer">Projects</a>
+					<a onClick = {() => clickFunc(1)}>Projects</a>
 				</li>
 				<li>
-					<a href="#contactContainer">Contact</a>
+					<a onClick = {() => clickFunc(2)}>Contact</a>
 				</li>
 				<div className="underbar"></div>
 			</ul>

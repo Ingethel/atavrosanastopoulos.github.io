@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import CanvasPoint from '../Data/Point';
+
+class CanvasPoint {
+	constructor(X = 0, Y = 0, rad = 1, focused = false){
+		this.X = X;
+		this.Y = Y;
+		this.radius = rad;
+		this.focused = focused;
+	}
+}
 
 export default class PointAssembly extends Component {
 	
@@ -15,19 +23,12 @@ export default class PointAssembly extends Component {
 			recording: this.props.cursorState,
 			movingAnchor: false,
 			movingArea: false,
-			selectDist: 10,
+			selectDist: this.props.selectDist > 0 ? this.props.selectDist : 10,
 			update: () => this.updateDims()
 		}
 	}
 	
-	updateDims(){
-		this.setState({
-			maxX: this.props.width,
-			maxY: this.props.height
-		})
-	}
-
-	async componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps = (nextProps) => {
 	    if((this.props.width !== nextProps.width) || (this.props.height !== nextProps.height))
 	    {
 	        this.state.update();
@@ -46,24 +47,47 @@ export default class PointAssembly extends Component {
 		if((this.props.clickPoint !== nextProps.clickPoint)){
 			this.onClick(nextProps.clickPoint);
 		}
-
 	} 
 
-	componentDidMount(){
+	componentDidMount = () => {
 		this.draw(this.state.points);
 	}
 
-	componentDidUpdate(){
+	componentDidUpdate = () => {
 		this.draw(this.state.points);
 	}
 
-	newEntry(point){
+	updateDims = () => {
+		this.setState({
+			maxX: this.props.width,
+			maxY: this.props.height
+		})
+	}
+
+	onClick = (point) => {
+		let [success, focused] = this.getFocusedTarget();
+		if(success){
+			this.onFocusedTarget(focused, point);
+		} else {
+			let [found, focused] = this.tryFocusTarget(point);
+			if(found){
+				focused.focused = true;
+			} else {
+				if(!this.state.recording)
+					this.newEntry(point);	
+			}
+		}
+		this.revalidateEdges();
+		
+	}
+
+	newEntry = (point) => {
 		let points = this.state.points;
 		points.push(new CanvasPoint(point[0], point[1], 100, true));
 		this.setState(points);
 	}
 
-	revalidateEdges(){
+	revalidateEdges = () => {
 		let edges = [];
 		let maxEdge = 0, minEdge = 1000;
 		for(let i = 0; i < this.state.points.length; i++){
@@ -90,7 +114,7 @@ export default class PointAssembly extends Component {
 		});
 	}
 
-	getFocusedTarget(){
+	getFocusedTarget = () => {
 		let focusedTarget = this.state.points.filter(x => x.focused === true);
 		if(focusedTarget.length === 0){
 			return [false, null]
@@ -99,8 +123,8 @@ export default class PointAssembly extends Component {
 		}
 	}
 
-	tryFocusTarget(click){
-		let focusedTarget = this.state.points.filter(x => this.getDist([x.X, x.Y], click) <= this.state.selectDist);
+	tryFocusTarget = (click) => {
+		let focusedTarget = this.state.points.filter(t => this.getDist([t.X, t.Y], click) <= this.state.selectDist);
 		if(focusedTarget.length === 0){
 			return [false, null]
 		} else {
@@ -108,28 +132,23 @@ export default class PointAssembly extends Component {
 		}
 	}
 
-	getDist(pointA, pointB){
-		return Math.sqrt(Math.pow((pointA[0] - pointB[0]), 2) + Math.pow((pointA[1] - pointB[1]), 2));
-	}
-
-	onClick(point){
-		let [success, focused] = this.getFocusedTarget();
-		if(success){
-			this.onFocusedTarget(focused, point);
-		} else {
-			let [found, focused] = this.tryFocusTarget(point);
-			if(found){
-				focused.focused = true;
-			} else {
-				if(!this.state.recording)
-					this.newEntry(point);	
+	onFocusedTarget = (target, click) => {
+		var setAnchorStates = () => {
+			if (dist <= this.state.selectDist){
+				this.setState({
+					movingAnchor: true,
+					movingArea: false
+				});
+				return true;
+			} else if (Math.abs(dist - target.radius) <= this.state.selectDist){
+				this.setState({
+					movingAnchor: false,
+					movingArea: true
+				});
+				return true;
 			}
+			return false;
 		}
-		this.revalidateEdges();
-		
-	}
-
-	onFocusedTarget(target, click){
 		let dist = this.getDist([target.X, target.Y], click);
 		if(this.state.recording){
 			if(this.state.movingAnchor){
@@ -137,44 +156,27 @@ export default class PointAssembly extends Component {
 				target.Y = click[1];
 			} else if(this.state.movingArea){
 				target.radius = dist;
-			} else if (dist <= this.state.selectDist){
-				this.setState({
-					movingAnchor: true,
-					movingArea: false
-				});
-			} else if (Math.abs(dist - target.radius) <= this.state.selectDist){
-				this.setState({
-					movingAnchor: false,
-					movingArea: true
-				});
-			}
+			} else setAnchorStates();
 		} else {
-			if (dist <= this.state.selectDist){
-				this.setState({
-					movingAnchor: true,
-					movingArea: false
-				});
-			} else if (Math.abs(dist - target.radius) <= this.state.selectDist){
-				this.setState({
-					movingAnchor: false,
-					movingArea: true
-				});
-			} else {
-				target.focused = false;
-			}
+			if (setAnchorStates()){}
+			else target.focused = false;
 		}
 	}
 
-	comparePoints(pointA, pointB){
+	getDist = (pointA, pointB) => {
+		return Math.sqrt(Math.pow((pointA[0] - pointB[0]), 2) + Math.pow((pointA[1] - pointB[1]), 2));
+	}
+
+	comparePoints = (pointA, pointB) => {
 		return (pointA[0] === pointB[0] && pointA[1] === pointB[1]);
 	}
 
-	compareEdge(edgeA, edgeB){
+	compareEdge = (edgeA, edgeB) => {
 		return (this.comparePoints(edgeA[0], edgeB[0]) && this.comparePoints(edgeA[1], edgeB[1])) || 
 		(this.comparePoints(edgeA[0], edgeB[1]) && this.comparePoints(edgeA[1], edgeB[0]));
 	}
 
-	findEdge(list, edge){
+	findEdge = (list, edge) => {
 		let foundItems = list.filter(x => this.compareEdge(x, edge));
 		return foundItems.length > 0;
 	}
@@ -182,7 +184,6 @@ export default class PointAssembly extends Component {
 	draw = (points) => {
 		const bck = this.refs.canvas.getContext('2d');
 		bck.clearRect(0,0, this.state.maxX, this.state.maxY);
-
 		// draw edges
 		for(let i = 0; i < this.state.edges.length; i++){
 			let pA = this.state.edges[i][0];
@@ -196,28 +197,7 @@ export default class PointAssembly extends Component {
 			bck.strokeStyle = 'rgba(0,123,255,' + norm + ')';
 			bck.stroke();
 		}
-		// let edges = [];
-		// let maxEdge = 0, minEdge = 0;
-		// for(let i = 0; i < this.state.points.length; i++){
-		// 	for(let j = 0; j < this.state.points.length; j++){
-		// 		if(i !== j){
-		// 			let pA = [this.state.points[i].X, this.state.points[i].Y];
-		// 			let pB = [this.state.points[j].X, this.state.points[j].Y]; 
-		// 			let dist = this.getDist(pA, pB);
-		// 			if(dist <= this.state.points[i].radius){
-		// 				let newEdge = [pA, pB];
-		// 				if(!this.findEdge(edges, newEdge)){
-		// 					edges.push(newEdge);
-		// 					if(maxEdge < dist) maxEdge = dist;
-		// 					if(minEdge > dist) minEdge = dist;
-							
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
 		bck.strokeStyle = "#007bff";
-
 		// draw points
 		for(let i = 0; i < this.state.points.length; i++){
 	        bck.beginPath();
@@ -237,7 +217,7 @@ export default class PointAssembly extends Component {
 		}
 	}
 
-	render(){
+	render = () => {
 		return(
 			<canvas
 				ref="canvas" 

@@ -12,29 +12,35 @@ export default class Background extends Component {
 			makeForeground: this.props.makeForeground,
 			point: [0,0],
 			recordCursor: false,
+			game: this.props.game,
 			update: () => this.updateDims()
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount = () => {
   		this.state.update();
 	}
 	
-	componentWillReceiveProps(nextProps) {
+	componentWillReceiveProps = (nextProps) => {
 	    if((this.props.width !== nextProps.width) || (this.props.height !== nextProps.height))
 	    {
 	        this.state.update();
 	    }
+	    if(this.props.game !== nextProps.game){
+	    	this.setState({
+	    		game: nextProps.game
+	    	})
+	    }
 	} 
 
-	updateDims(){
+	updateDims = () => {
 		this.setState({
 			width: this.props.width,
 			height: this.props.height
 		})
 	}
 
-	style(){
+	style = () => {
 		return{
 			position: "fixed",
 			top: "0",
@@ -63,7 +69,30 @@ export default class Background extends Component {
 		}
 	}
 
-	render(){
+	selectGame = () => {
+		switch(this.state.game){
+			case 'points':
+				return (
+					<PointAssembly
+						clickPoint = {this.state.point}
+						cursorState = {this.state.recordCursor}
+						width = {this.state.width} 
+						height = {this.state.height}
+					/>
+				)
+			case 'rects': default:
+				return(
+					<RectDivision
+						clickPoint = {this.state.point}
+						cursorState = {this.state.recordCursor}
+						width = {this.state.width} 
+						height = {this.state.height}
+					/>
+				)
+		}
+	}
+
+	render = () => {
 		return(
 			<div
 				style = {this.style()} 
@@ -72,12 +101,7 @@ export default class Background extends Component {
 				onMouseUp = {this.onMouseUp}
 				onClick = {this.onClick}
 			>
-				<PointAssembly
-					clickPoint = {this.state.point}
-					cursorState = {this.state.recordCursor}
-					width = {this.state.width} 
-					height = {this.state.height}
-				/>
+				{this.selectGame()}
 			</div>
 		);
 	}

@@ -7,19 +7,22 @@ const Header = ({ header, index }) => {
 		paddingLeft: "20px",
 		verticalAlign: "middle",
 		lineHeight: "60px",
-		fontFamily: 'Anton',
-		fontSize: "1.2rem",
-		color: "#007bff",
 		marginBottom: "10px"
 	}
 
 	return (
 		<div
 			className = "box-shadow anim-button"
-			style = {myStyle} 
+			style = {myStyle}
 			id = {`heading${index}`}
-			>
-			<p>{header}</p>
+		>
+			<p 
+				style = {{
+					fontFamily: 'Anton',
+					fontSize: "1.2rem",
+					color: "#007bff",
+				}}
+			>{header}</p>
 		</div>
 	);
 }

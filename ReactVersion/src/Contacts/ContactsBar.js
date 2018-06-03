@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from '../Atoms/CardImage';
 import contactInfo from '../Data/ContactInfo'
-import './Sidebar.css';
+import './ContactsBar.css';
 
-const Sidebar = ({render}) => {
+const ContactsBar = ({render=true, sidebar=false}) => {
 
 	const renderContacts = () => {
 		return contactInfo.map((contact, index) => {
@@ -15,6 +15,7 @@ const Sidebar = ({render}) => {
 					<Image 
 						imgURL = {contact.image}
 						imgWidth = "50px"
+						imgHeight = "50px"
 					/>
 				</a>
 			)
@@ -23,7 +24,7 @@ const Sidebar = ({render}) => {
 
 	return (
 		render ?
-		<div className="contactSidebar">
+		<div className={sidebar ? "contactSidebar" : "contactBar"}>
 			{renderContacts()}
 		</div>
 		: <div></div>
@@ -31,4 +32,4 @@ const Sidebar = ({render}) => {
 	
 }
 
-export default Sidebar;
+export default ContactsBar;

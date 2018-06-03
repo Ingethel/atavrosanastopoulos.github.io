@@ -12,6 +12,10 @@ body {
 	margin: auto;	
 }
 
+p {
+	font-family: "Roboto";
+}
+
 .container{
 	margin: auto;	
 }
