@@ -7,7 +7,7 @@ const ContactsDiv = () => {
 		<div 
 			className = "homeContainer"
 		>
-			<p>{`So, Let's continue with you now.`}</p>
+			<p>{`So, let's continue with you now.`}</p>
 			<p>{`If you want me to learn about you, then smash those buttons fam!!`}</p>
 			<br/>
 			<ContactsBar/>

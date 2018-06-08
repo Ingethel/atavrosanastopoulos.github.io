@@ -23,7 +23,7 @@ export default class HomeDiv extends Component {
 				className = "homeContainer"
 				style={{height: this.state.display ? "auto" : "0px"}}
 			>
-				<p className="title">{`'Hello World!!!'`}</p>
+				<p className="title">{`Hello World!!!`}</p>
 				<hr/>
 				<p>{`Welcome to my website. Lets get to know each other.`}</p>
 				<p>{`Let's start with me, shall we?`}</p>
