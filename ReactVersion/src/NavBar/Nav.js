@@ -1,9 +1,11 @@
 import React from 'react';
+import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
 import './Nav.css';
 
 const Nav = ({clickFunc}) => {
-	return (
-		<div className="mynavbar">
+
+	const bar = () => {
+		return(
 			<ul>
 				<li>
 					<a onClick = {() => clickFunc(0)}>Home</a>
@@ -16,6 +18,17 @@ const Nav = ({clickFunc}) => {
 				</li>
 				<div className="underbar"></div>
 			</ul>
+		);
+	}
+
+	return (
+		<div>
+			<BrowserView viewClassName="mynavbarBrowser" device={isBrowser}>
+				{bar()}
+			</BrowserView>
+			<MobileView viewClassName="mynavbarMobile" device={isMobile}>
+				{bar()}
+			</MobileView>
 		</div>
 	);
 }

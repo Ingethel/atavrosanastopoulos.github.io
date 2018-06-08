@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
 import database from '../Data/Database';
 import ProjectClass from '../Components/ProjectClass'
 import './style_projects.css';
@@ -15,12 +16,16 @@ const ProjectsDiv = () => {
 			/>
 			);
 	});
-	
+
+
 	return (
-		<div 
-		style={{marginTop: "70px"}}
-		id = "projectsContainer">
-				{projectsArray}
+		<div id = "projectsContainer">	
+			<BrowserView style={{marginTop: "70px"}} device={isBrowser}>
+	    		{projectsArray}
+			</BrowserView>
+			<MobileView style={{maxWidth: "20rem"}} device={isMobile}>
+	    		{projectsArray}
+			</MobileView>
 		</div>
 	);
 }

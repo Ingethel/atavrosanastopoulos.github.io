@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { isBrowser } from "react-device-detect";
 import './Home.css';
 
 export default class HomeDiv extends Component {
@@ -16,6 +17,18 @@ export default class HomeDiv extends Component {
 		})
 	}
 
+	hideButton = () => {
+		if(isBrowser){
+			return(
+				<div>
+					<br/>
+					<p>{`Speaking of games, do you want to play one?`}</p>
+					<a onClick = {this.onClick}>{`Hide the content and lets start drawing!!!`}</a>
+				</div>
+			);
+		}
+	}
+
 	render = () => {
 		return (
 			<div 
@@ -31,9 +44,7 @@ export default class HomeDiv extends Component {
 				<p>{`I am developer interested in Computer Vision, Computer Games and Machine Learning`}</p>
 				<p>{`If you navigate carefully, you can have a look at my work. Some are through a group effort, but mostly solo projects.`}</p>
 				<p>{`My favorites include ray tracing visualisations and mini games with procedural content generation.`}</p>
-				<br/>
-				<p>{`Speaking of games, do you want to play one?`}</p>
-				<a onClick = {this.onClick}>{`Hide the content and lets start drawing!!!`}</a>
+				{this.hideButton()}
 			</div>
 		);
 	}

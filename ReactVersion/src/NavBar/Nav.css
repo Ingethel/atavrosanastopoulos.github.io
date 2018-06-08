@@ -1,4 +1,4 @@
-.mynavbar {
+.mynavbarBrowser {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -12,7 +12,16 @@
 	transition: .2s;
 }
 
-.mynavbar:hover {
+.mynavbarMobile {
+	margin: auto;
+	background-color: #ffffff;
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+	font-size: 1.6rem;
+	transition: .2s;
+}
+
+
+.mynavbarBrowser:hover {
 	height: 50px;
 }
 
