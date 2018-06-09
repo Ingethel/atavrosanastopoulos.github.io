@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { isBrowser } from "react-device-detect";
 import Image from '../Atoms/CardImage';
 import Title from '../Atoms/CardTitle';
 import Text from '../Atoms/CardText';
@@ -45,9 +46,18 @@ class Card extends Component {
 		};
 	}
 	
-
 	onClick = (event) => {
 		this.setState({extended: !this.state.extended});
+	}
+
+	getImageWidth = () => {
+		if(isBrowser)
+			return this.state.extended ? "400px" : "100%";
+		return "100%";
+	}
+
+	getImageHeight = () => {
+		return this.state.extended ? "auto" : "200px";
 	}
 
 	render(){
@@ -60,12 +70,10 @@ class Card extends Component {
 			>
 				<Image 
 					imgURL = {process.env.PUBLIC_URL + (this.state.extended ? this.state.project.image2 : this.state.project.image)}
-					imgWidth = {this.state.extended ? "400px" : "100%"}
-					imgHeight = {this.state.extended ? "auto" : "200px"}
+					imgWidth = {this.getImageWidth()}
+					imgHeight = {this.getImageHeight()}
 				/>
-				<div 
-				style={this.getCardTextStyle()}
-				>
+				<div style={this.getCardTextStyle()}>
 					<Title title = {this.state.project.title} />
 					<Text text = {this.state.extended ? this.state.project.overview : this.state.project.summary} />
 					<Tags tags = {this.state.project.tags} />

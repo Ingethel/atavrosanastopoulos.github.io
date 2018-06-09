@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { isBrowser, isMobile } from "react-device-detect";
+import { BrowserView, MobileView, isBrowser, isMobile } from "react-device-detect";
 import Nav from './NavBar/Nav';
 import Background from './Background/Background';
 import ProjectsDiv from './Projects/ProjectsDivision';
@@ -69,28 +69,24 @@ export default class App extends Component {
 	}
 
 	sidebar = () => {
-		if(isBrowser){
-			if(this.state.pageContent !== 2){
-				return (
-					<ContactsBar 
-						render={this.state.renderSidebar} 
-						sidebar={true}
-					/>
-				);
-			}	
-		}
+		if(this.state.pageContent !== 2){
+			return (
+				<ContactsBar 
+					render={this.state.renderSidebar} 
+					sidebar={true}
+				/>
+			);
+		}	
 	}
 
 	background = () => {
-		if(isBrowser){
-			return(
-				<Background 
-					width={this.state.maxWidth} 
-					height={this.state.maxHeight} 
-					game={this.state.pageContent === 1 ? 'rects' : 'points'}
-				/>
-			);
-		}
+		return(
+			<Background 
+				width={this.state.maxWidth} 
+				height={this.state.maxHeight} 
+				game={this.state.pageContent === 1 ? 'rects' : 'points'}
+			/>
+		);
 	}
 
 	render = () => {
@@ -101,11 +97,16 @@ export default class App extends Component {
 		return(
 			<div className="container" style={{maxWidth: this.state.contentWidth}}>
 				<Nav clickFunc={this.changeContent}/>
-				{this.sidebar()}
-				{this.background()}
-				<Scroll height={this.state.contentHeight}>
-					{this.state.pages[this.state.pageContent]()}
-				</Scroll>
+				<BrowserView device={isBrowser}>
+			    	{this.sidebar()}
+					{this.background()}
+					<Scroll height={this.state.contentHeight}>
+						{this.state.pages[this.state.pageContent]()}
+					</Scroll>
+				</BrowserView>
+				<MobileView device={isMobile}>
+		    		{this.state.pages[this.state.pageContent]()}
+				</MobileView>
 			</div>
 		);
 	}

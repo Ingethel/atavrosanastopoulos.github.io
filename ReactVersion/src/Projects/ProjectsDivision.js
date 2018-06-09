@@ -12,7 +12,7 @@ const ProjectsDiv = () => {
 				key = {i}
 				projectClass = {user}
 				index = {i}
-				flag = {true}
+				flag = {isBrowser}
 			/>
 			);
 	});
