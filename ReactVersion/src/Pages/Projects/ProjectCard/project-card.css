@@ -1,0 +1,52 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.tags {
+  font-size: 8px;
+  text-align: right;
+  padding: 10px;
+}
+
+img {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 250px;
+  max-height: 250px;
+  margin-top: auto;
+}
+
+hr {
+  width: 100%;
+}
+
+.action-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: none;
+}
+
+@media only screen and (min-width: 600px) {
+  .card {
+    border: 1px solid;
+    border-radius: 1%;
+    flex: 1 0 400px;
+    margin: 10px;
+  }
+  .card:hover .action-icon {
+    display: inherit;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card {
+    border: 0;
+    border-radius: 0;
+    flex: 0 0 100%;
+    margin: 10px 0;
+  }
+}
