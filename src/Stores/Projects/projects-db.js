@@ -1,7 +1,36 @@
+import saliencySmall from "../../assets/images/examplegeometrymap.png";
+import saliencyLarge from "../../assets/images/examplegeometrymapFull.png";
+
+import volumvisSmall from "../../assets/images/volumvis.png";
+import volumvisLarge from "../../assets/images/volumvisFull.png";
+
+import raytracing from "../../assets/images/raytracing.png";
+
+import trackingSmall from "../../assets/images/tracking.png";
+import trackingLarge from "../../assets/images/trackingFull.png";
+
+import DWA from "../../assets/images/DWA.png";
+
+import boulder from "../../assets/images/boulder.png";
+
+import spaceretrSmall from "../../assets/images/spaceretr.png";
+import spaceretrLarge from "../../assets/images/spaceretrFull.png";
+
+import ballrunnerSmall from "../../assets/images/ballrunner.png";
+import ballrunnerLarge from "../../assets/images/ballrunnerFull.png";
+
+import calendar from "../../assets/images/calendar.PNG";
+
+import robot from "../../assets/images/robot.png";
+
+import NN from "../../assets/images/NN.png";
+
+import portfolioSmall from "../../assets/images/portfolioSmall.png";
+
 const database = [
   {
-    image: `/images/examplegeometrymap.png`,
-    image2: "/images/examplegeometrymapFull.png",
+    image: saliencySmall,
+    image2: saliencyLarge,
     title: "Saliency in 3D Environment",
     summary:
       "Exploring low-level saliency in virtual environments during a search task.",
@@ -17,8 +46,8 @@ const database = [
     tags: "Tobii EyeX, Unity, C++, OpenCV, OpenGL, Computer Vision and Graphics"
   },
   {
-    image: `/images/volumvis.png`,
-    image2: "/images/volumvisFull.png",
+    image: volumvisSmall,
+    image2: volumvisLarge,
     title: "3D Volume Visualisation using Ray Tracing",
     summary:
       "Visualisation of volume data using ray tracing rendering and uniform sampling.",
@@ -34,8 +63,7 @@ const database = [
     tags: "C++, Pthreads, OpenGL, Computer Vision and Graphics"
   },
   {
-    image: `/images/raytracing.png`,
-    image2: "/images/raytracing.png",
+    image: raytracing,
     title: "Ray Tracing",
     summary:
       "Ray Tracer rendering technique. All objects are declared in a mathematical format.",
@@ -48,8 +76,8 @@ const database = [
     tags: "C++, Pthreads, OpenGL, GLM, Computer Vision and Graphics"
   },
   {
-    image: `/images/tracking.png`,
-    image2: "/images/trackingFull.png",
+    image: trackingSmall,
+    image2: trackingLarge,
     title: "Multiple Object Tracking",
     summary: "Identify and track a set of objects across frames.",
     overview: `<p>The objective was to identify and track a set of balls across frames, having a total of 10 balls varied across 3 colors. 
@@ -60,8 +88,7 @@ const database = [
     tags: "Matlab, Computer Vision and Graphics"
   },
   {
-    image: `/images/DWA.png`,
-    image2: "/images/DWA.png",
+    image: DWA,
     title: "Image Processing",
     summary:
       "Application of some basic filters is explored, as well as a stitching technique for panoramic compostition.",
@@ -73,8 +100,7 @@ const database = [
     tags: "Python, UG Final Year Project, Computer Vision and Graphics"
   },
   {
-    image: `/images/boulder.png`,
-    image2: "/images/boulder.png",
+    image: boulder,
     title: "Boulder Bypasser",
     summary:
       "Semi 3D flight game. Fly inside a procedurally generated cave. Pass throught waypoints and avoid obstacles.",
@@ -93,8 +119,8 @@ const database = [
     tags: "Unity, 3DS Max, Computer Games"
   },
   {
-    image: `/images/spaceretr.png`,
-    image2: "/images/spaceretrFull.png",
+    image: spaceretrSmall,
+    image2: spaceretrLarge,
     title: "Space Retributor",
     summary:
       "2D arcade space shooter. Fight your way through enemies of increasing difficulty and their end-game boss.",
@@ -112,8 +138,8 @@ const database = [
     tags: "Unity, Computer Games"
   },
   {
-    image: `/images/ballrunner.png`,
-    image2: "/images/ballrunnerFull.png",
+    image: ballrunnerSmall,
+    image2: ballrunnerLarge,
     title: "Ball Runner",
     summary:
       "A platform-runner mini game with simplistic graphics and procedurally generated level.",
@@ -127,8 +153,7 @@ const database = [
     tags: "Unity, Computer Games"
   },
   {
-    image: `/images/calendar.PNG`,
-    image2: "/images/calendar.PNG",
+    image: calendar,
     title: "Calendar based Scheduler",
     summary:
       "A scheduler created for a museum to hold the guided tours and generate weekly and semester reports.",
@@ -150,8 +175,7 @@ const database = [
     tags: "Unity"
   },
   {
-    image: `/images/robot.png`,
-    image2: "/images/robot.png",
+    image: robot,
     title: "Automated Resoure Retrieval with Mobile Robots",
     summary:
       "Robotics group project with aim of constructing an autonomous robot for navigating in an arena, searching the specified resources and retrieving them back to the base.",
@@ -162,8 +186,7 @@ const database = [
     tags: "C++, Pthreads, Phidget, Lego"
   },
   {
-    image: `/images/NN.png`,
-    image2: "/images/NN.png",
+    image: NN,
     title: "Neural Network and Genetic Algorithm",
     summary:
       "Construction of Neural Network to learn two function outputs with single input and optimisation of hidden layer by a genetic algorithm.",
@@ -175,10 +198,11 @@ const database = [
     tags: "C++"
   },
   {
-    image: `/images/portfolioSmall.png`,
-    image2: "/images/portfolioSmall.png",
+    image: portfolioSmall,
     title: "Portfolio",
     summary: "Does this count as a project though?",
+    overview:
+      "Mostly a playground site to learn the basics of React such as routing, state management with MobX etc.. Hope you enjoyed it :)",
     tags: "React, Mobx, Github Pages"
   }
 ];

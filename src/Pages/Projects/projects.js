@@ -19,7 +19,7 @@ const assignModal = p => {
           title: p.title,
           summary: p.overview,
           tags: p.tags,
-          img: p.image2
+          img: p.image2 || p.image
         },
         onClick: () => destroyModal(p),
         actionIcon: "colapse"
